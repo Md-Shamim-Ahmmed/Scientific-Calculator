@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.CollectionReference;
-import com.google.cloud.firestore.DocumentSnapshot;
 import com.google.cloud.firestore.Firestore;
 import com.google.cloud.firestore.QueryDocumentSnapshot;
 import com.google.cloud.firestore.QuerySnapshot;
@@ -20,17 +19,17 @@ public class FirebaseService {
     public List<Schema> getHistoryDetails() throws Exception {
         Firestore dbFirestore = FirestoreClient.getFirestore();
         CollectionReference collectionReference = dbFirestore.collection("history");
-        DocumentSnapshot lastDocument = collectionReference
-                .orderBy("id", Direction.DESCENDING)
-                .limit(1)
-                .get()
-                .get()
-                .getDocuments()
-                .get(0);
+        // DocumentSnapshot lastDocument = collectionReference
+        //         .orderBy("id", Direction.DESCENDING)
+        //         .limit(1)
+        //         .get()
+        //         .get()
+        //         .getDocuments()
+        //         .get(0);
 
-        System.out.println(lastDocument.getId());        
+        // System.out.println(lastDocument.getId());        
         ApiFuture<QuerySnapshot> future = collectionReference.orderBy("id", Direction.DESCENDING).get();
-        System.out.println(future.get().getDocuments().get(0).get("id"));
+        // System.out.println(future.get().getDocuments().get(0).get("id"));
         List <Schema> list = new ArrayList<Schema>();
         for(QueryDocumentSnapshot element : future.get().getDocuments()) {            
             list.add(element.toObject(Schema.class));
