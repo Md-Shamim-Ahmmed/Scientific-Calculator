@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Shamim Ahmmed">
+    <meta name="email" content="shamim.pust.cse11@gmail.com">
+    <meta name="name" content="Calculator">
+    <meta name="title" content="Calculator - Scietific Calculator using HTML CSS JavaScript Java Spring-Boot">
+    <meta name="keywords"
+        content="calculator, Scietific, html, css, java, javascript, spring, spring-boot, Scietific-Calculator, Calculator, web, web-calculator, simple-calculator, simple-web-calculator">
+    <meta name="profile" content="github.com/md-shamim-ahmmed">
+    <title>Web Scietific Calculator</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" type="text/css"
+        href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+</head>
+
+<body>
+    <div class="container">
+        <div class="display">
+            <span style="position: relative; bottom: -1.7em; right: -.5em;">
+                <button id="history" onclick="historyFunction()">
+                    <i class="fa fa-history" aria-hidden="true"></i>
+                </button>
+                <div id="his" class="his">
+                    <div class="hisBar">
+                    <button id="history" onclick="historyFunction()">
+                        <i class="fa fa-history fa-2x" aria-hidden="true"></i>
+                    </button>
+                    <div class="line">
+                    </div>
+                </div>
+                    <div class="history" id="his_bar">
+                        <div class="info" id="info">
+                            <button class='his_btn'>7+5</button>=<button class='his_btn'>5</button>
+                        </div>
+                    </div>
+                </div>
+            </span>
+            <input id="screen" type="text" placeholder="0">
+        </div>
+        <div class="btns">
+            <div class="row">
+                <button id="rORg" onclick="Rad_Dag_Function()">Rad | <span
+                        style="color: rgb(136, 136, 136);">Deg</span></button>
+                <button id="ce" onclick="backspc()">CE</button>
+                <button onclick="factFunction()">x!</button>
+                <button class="btn">(</button>
+                <button class="btn">)</button>
+                <button class="btn">%</button>
+                <button id="ac" onclick="screen.value=''">AC</button>
+            </div>
+            <div class="row">
+                <button id="lnv" onclick="lnvFunction()">lnv</button>
+                <button id="sin" onclick="sinFunction()">sin</button>
+                <button id="ln" onclick="lnFunction()">ln</button>
+                <button class="btn">7</button>
+                <button class="btn">8</button>
+                <button class="btn">9</button>
+                <button class="btn">÷</button>
+            </div>
+            <div class="row">
+                <button onclick="piFunction()">π</button>
+                <button id="cos" onclick="cosFunction()">cos</button>
+                <button id="log" onclick="logFunction()">log</button>
+                <button class="btn">4</button>
+                <button class="btn">5</button>
+                <button class="btn">6</button>
+                <button class="btn">×</button>
+            </div>
+            <div class="row">
+                <button onclick="eFunction()">e</button>
+                <button id="tan" onclick="tanFunction()">tan</button>
+                <button id="sqrt" onclick="sqrtFunction()">√</button>
+                <button class="btn">1</button>
+                <button class="btn">2</button>
+                <button class="btn">3</button>
+                <button class="btn">-</button>
+            </div>
+            <div class="row">
+                <button onclick="ansFunction()">Ans</button>
+                <button onclick="expFunction()">EXP</button>
+                <button id="prx" onclick="powFunction()">
+                    x<sup>y</sup>
+                </button>
+                <button class="btn">0</button>
+                <button class="btn">.</button>
+                <button id="eval" onclick="evalFunction()">=</button>
+                <button class="btn">+</button>
+            </div>
+        </div>
+    </div>
+    <script src="sc.js"></script>
+</body>
+
+</html>

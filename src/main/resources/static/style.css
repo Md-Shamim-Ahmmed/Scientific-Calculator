@@ -1,0 +1,138 @@
+body {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    user-select: none;
+    background: rgb(218, 236, 255);
+    /* background: #ecf0f3; */
+}
+
+.container {
+    margin-left: 1.8em;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 13px 13px 20px #7d7d7e, -13px -13px 20px #c0c0c0;
+}
+
+.content {
+    /* width: 100%; */
+    margin-top: 1.7em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.row button {
+    width: 90px;
+    height: 30px;
+    font-size: 16px;
+    border: none;
+    outline: none;
+    margin: 5px;
+    border-radius: 5px;
+    transition: .1s;
+    box-shadow: 5px 5px 8px #00000020, -5px -5px 8px #ffff;
+    background-color: #d4d4d4;
+}
+
+.row button:hover {
+    box-shadow: inset 5px 5px 8px rgba(16, 16, 16, .1), inset -5px -5px 8px #fff;
+    background: #fff;
+}
+
+.display button{
+    color: #5d6064;
+    border: none;
+    background: none;
+}
+
+.display button:hover{
+    color: #000000;
+    border: none;
+    background: none;
+}
+
+.display #screen {
+    margin-bottom: .5em;    
+    width: 96%;
+    height: 70px;
+    font-size: 35px;
+    outline: none;
+    border: none;
+    text-align: right;
+    padding-right: .5em;
+    padding-top: .3em;
+    background: #ecf0f3;
+    border-radius: 6px;
+    box-shadow: inset 8px 8px 8px #cbced1, inset -8px -8px 8px #ffffff;
+}
+
+#eval {
+    background: #494ce4;
+    color: #fff;
+}
+
+#eval:hover {
+    box-shadow: inset 5px 5px 8px #494ce4, inset -5px -5px 8px #0004d4;
+}
+
+#ac {
+    background: #33cc33;
+    color: #fff;
+}
+
+#ac:hover {
+    box-shadow: inset 5px 5px 8px #33cc33, inset -5px -5px 8px #11ac11;
+}
+
+#ce {
+    background: #ff0000;
+    color: #fff;
+}
+
+#ce:hover {
+    box-shadow: inset 5px 5px 8px #ff0000, inset -5px -5px 8px #c40c0c;
+}
+.his {
+    position: absolute;
+    width: 440px;
+    /* min-height: auto; */
+    height: 260px;
+    /* max-height: 500px; */
+    background: #ffffff;
+    top: 4px;
+    display: none;
+}
+.his.show{
+    display: block;
+}
+
+.info button{
+    color: #3135f3;
+    width: auto;
+    height: 30px;
+    font-size: 16px;
+    outline: none;
+    margin: 5px;
+    border-radius: 5px;
+    transition: .1s;
+    background: transparent;
+    border:solid 2px #afaeae;
+}
+.info button:hover {
+    border:solid 2px #afaeae;
+    background-color: #f1f1f1;    
+}
+
+.history {
+    position: absolute;
+    width: 100%;
+    height: 250px;
+    margin-top: 15px;
+    background: #f3f3f3;    
+    overflow: auto;
+}
