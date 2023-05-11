@@ -19,15 +19,18 @@ public class FirebaseService {
 
     public List<Schema> getHistoryDetails() throws Exception {
         Firestore dbFirestore = FirestoreClient.getFirestore();
-        CollectionReference collectionReference = dbFirestore.collection("history");        
-        DocumentSnapshot lastDocument = collectionReference.orderBy("equation", Direction.ASCENDING)
+        CollectionReference collectionReference = dbFirestore.collection("history");
+        DocumentSnapshot lastDocument = collectionReference
+                .orderBy("id", Direction.DESCENDING)
                 .limit(1)
                 .get()
                 .get()
                 .getDocuments()
                 .get(0);
-        System.out.println(Long.parseLong(lastDocument.getId()) + 1);                     
-        ApiFuture<QuerySnapshot> future = collectionReference.get();
+
+        System.out.println(lastDocument.getId());        
+        ApiFuture<QuerySnapshot> future = collectionReference.orderBy("id", Direction.DESCENDING).get();
+        System.out.println(future.get().getDocuments().get(0).get("id"));
         List <Schema> list = new ArrayList<Schema>();
         for(QueryDocumentSnapshot element : future.get().getDocuments()) {            
             list.add(element.toObject(Schema.class));
@@ -38,15 +41,14 @@ public class FirebaseService {
     public void addHistoryDetails(Schema schema) throws Exception {
         Firestore dbFirestore = FirestoreClient.getFirestore(); 
         CollectionReference collectionReference = dbFirestore.collection("history");        
-        // DocumentSnapshot lastDocument = collectionReference.orderBy("timestamp", Direction.DESCENDING)
+        // DocumentSnapshot lastDocument = collectionReference.orderBy("id", Direction.DESCENDING)
         //         .limit(1)
         //         .get()
         //         .get()
         //         .getDocuments()
         //         .get(0);
-        // System.out.println(Long.parseLong(lastDocument.getId()) + 1);
-        // collectionReference.document(Long.toString(Long.parseLong(lastDocument.getId())+1)).set(schema);
-        collectionReference.document("0").set(schema);
-        // dbFirestore.collection("history").add(schema);
+        // collectionReference.document(Long.toString(Long.parseLong(lastDocument.getId()) + 1)).set(schema);
+        // collectionReference.document("3").set(schema);
+        collectionReference.add(schema);
     }
 }

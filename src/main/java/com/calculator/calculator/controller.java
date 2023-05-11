@@ -26,9 +26,10 @@ public class controller {
 
     @PostMapping("/addhistory")
     public ResponseEntity<?> addHistory(@RequestBody Map<String, String> input) throws Exception{
+        Long id = Long.parseLong(input.get("id").toString());
         String equation = input.get("equation").toString();
         String value = input.get("value").toString();        
-        Schema schema = new Schema(equation, value);
+        Schema schema = new Schema(id, equation, value);
         schemaService.addHistoryDetails(schema);
         return ResponseEntity.ok("history added successful :/)");
     }

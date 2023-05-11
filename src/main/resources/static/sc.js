@@ -4,6 +4,7 @@ var his_btn = document.querySelectorAll(".his_btn");
 document.getElementById("lnv").value = "0";
 document.getElementById("rORg").value = "0";
 const e = 2.71828182846;
+var id = 1
 
 /*============ For getting the value of btn, Here we use for loop ============*/
 for (item of btn) {
@@ -200,13 +201,11 @@ function backspc() {
 //   return data;
 // }
 
-var ar = []//[{"equation":"7+5","value":"12"},{"equation":"4+2","value":"6"},{"equation":"44+4*2-85/3","value":"23.666666666666668"},{"equation":"8+5","value":"13"},{"equation":"4*6+8/2-5+3.85","value":"26.85"},{"equation":"44","value":"44"},{"equation":"26.85","value":"26.85"},{"equation":"23.666666666666668","value":"23.666666666666668"},{"equation":"5+6","value":"11"},{"equation":"50+6","value":"56"},{"equation":"9","value":"9"},{"equation":"95","value":"95"},{"equation":"5+5","value":"10"}]
-function show() { 
-  // getServerData(); 
-  console.log(ar);
+var ar = []
+function show() {
   var info = document.getElementById("info");
   info.innerHTML = "";
-  for (var i = 0; i < ar.length; i++) {
+  for (var i = ar.length - 1; i >= 0; i--) {
     info.insertAdjacentHTML(
       "afterbegin",
       `
@@ -229,22 +228,23 @@ const evalFunction = () => {
   sendDataFrontendToBackend(equ);
 };
 
-const generateId = (() => {
-  let id = 0;
+// const generateId = (() => {
+//   let id = 0;
   
-  return () => {
-    return id++;
-  };
-})();
+//   return () => {
+//     return id++;
+//   };
+// })();
 
-function sendDataFrontendToBackend(equation) {
-  var id = generateId();
+function sendDataFrontendToBackend(equation) {  
+  getServerData()  
+  id = id*1+1
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
       console.log("Response received:", this.responseText);
       getServerData();
-    }    
+    }
   };
   xhttp.open("POST", "/addhistory", true);
   xhttp.setRequestHeader("Content-Type", "application/json");
@@ -256,17 +256,20 @@ function sendDataFrontendToBackend(equation) {
     })
   );  
 }
+
 window.onload = function() {
   var xhttp = new XMLHttpRequest();
   xhttp.open("GET", "/gethistory", true);
   xhttp.setRequestHeader("Content-Type", "application/json");  
   xhttp.onreadystatechange = function () {
     if(xhttp.readyState == 4 ) {      
-      ar = JSON.parse(xhttp.responseText)      
+      ar = JSON.parse(xhttp.responseText)
+      id = ar[0].id      
     }    
   }  
   xhttp.send();
 }
+
 function getServerData() {
   var xhttp = new XMLHttpRequest();
   xhttp.open("GET", "/gethistory", true);
@@ -274,7 +277,8 @@ function getServerData() {
   xhttp.onreadystatechange = function () {
     if(xhttp.readyState == 4 ) {      
       ar = JSON.parse(xhttp.responseText)
+      id = ar[0].id
     }
-  }  
-  xhttp.send();  
+  }
+  xhttp.send();
 }
