@@ -3,8 +3,9 @@ var btn = document.querySelectorAll(".btn");
 var his_btn = document.querySelectorAll(".his_btn");
 document.getElementById("lnv").value = "0";
 document.getElementById("rORg").value = "0";
-const e = 2.71828182846;
+const e = 2.71828182846
 var id = 1
+const pi = 3.14159265359
 
 /*============ For getting the value of btn, Here we use for loop ============*/
 for (item of btn) {
@@ -83,11 +84,20 @@ function lnvFunction() {
 }
 function sinFunction() {
   var value = screen.value;
-  if (document.getElementById("sin").innerHTML == "sin") {
+  var RoG = document.getElementById("rORg").value;    
+
+  if (document.getElementById("sin").innerHTML == "sin") {    
+    if(RoG == 1) {
+      value = (pi/180) * value    
+    }
     screen.value = Math.sin(value);
     sendDataFrontendToBackend("sin(" + value + ")");
   } else {
-    screen.value = Math.asin(value);
+    value = Math.asin(value);
+    if(RoG == 1) {
+      value = Math.round((180 / pi) * value)
+    }
+    screen.value = value
     sendDataFrontendToBackend("sin<sup>-1</sup>(" + value + ")");
   }
 }
@@ -105,11 +115,19 @@ function lnFunction() {
 
 function cosFunction() {
   var value = screen.value;
+  var RoG = document.getElementById("rORg").value;  
   if (document.getElementById("cos").innerHTML == "cos") {
+    if(RoG == 1) {
+      value = (pi/180) * value    
+    }
     screen.value = Math.cos(value);
     sendDataFrontendToBackend("cos(" + value + ")");
   } else {
-    screen.value = Math.acos(value);
+    value = Math.acos(value);
+    if(RoG == 1) {
+      value = Math.round((180 / pi) * value)
+    }
+    screen.value = value
     sendDataFrontendToBackend("cos<sup>-1</sup>(" + value + ")");
   }
 }
@@ -127,18 +145,26 @@ function logFunction() {
 
 function tanFunction() {
   var value = screen.value;
+  var RoG = document.getElementById("rORg").value;    
   if (document.getElementById("tan").innerHTML == "tan") {
+    if(RoG == 1) {
+      value = (pi/180) * value    
+    }
     screen.value = Math.tan(value);
     sendDataFrontendToBackend("tan(" + value + ")");
   } else {
-    screen.value = Math.atan(value);
+    value = Math.atan(value);
+    if(RoG == 1) {
+      value = Math.round((180 / pi) * value)
+    }
+    screen.value = value
     sendDataFrontendToBackend("tan<sup>-1</sup>(" + value + ")");
   }
 }
 
 function powFunction() {
   var value = screen.value;
-  screen.value = Math.pow(value, 2);
+  // screen.value = value + "^";
   // sendDataFrontendToBackend('tan('+value+')')
 }
 
@@ -153,8 +179,8 @@ function sqrtFunction() {
   }
 }
 
-function piFunction() {
-  screen.value = 3.14159265359;
+function piFunction() {  
+  screen.value = pi
   sendDataFrontendToBackend("π");
 }
 
@@ -172,8 +198,6 @@ function expFunction() {
   screen.value = num;
   sendDataFrontendToBackend("1*10" + n);
 }
-
-function powFunction() { }
 
 function factFunction() {
   var i, num, f;
